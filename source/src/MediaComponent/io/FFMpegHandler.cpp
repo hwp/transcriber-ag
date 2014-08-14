@@ -7,6 +7,7 @@
 /********************************************************************************/
 
 #include "FFMpegHandler.h"
+#include "../base/Types.h"
 #include <iostream>
 #include <math.h>
 
@@ -21,7 +22,6 @@
 #include <unistd.h>
 #define USLEEP(a) usleep(a)
 #endif
-
 
 // --- FFMpegHandler ---
 FFMpegHandler::FFMpegHandler()
@@ -254,7 +254,7 @@ void FFMpegHandler::initFrame()
 	frame = new MediumFrame;
 
 	/** av_malloc aligns data for us! */
-	frame->samples = (int16_t*)av_malloc( MAX_AUDIO_FRAME_SIZE * sizeof(int16_t) );
+	frame->samples = (soundtouch::SAMPLETYPE*)av_malloc( MAX_AUDIO_FRAME_SIZE * sizeof(soundtouch::SAMPLETYPE) );
 }
 
 
@@ -308,7 +308,7 @@ vector<MediumFrame*> FFMpegHandler::decodeMulti(uint8_t* buf, int buf_len)
 			{
 				MediumFrame* f = new MediumFrame;
 
-				f->samples	= new int16_t[MAX_AUDIO_FRAME_SIZE];
+				f->samples	= new soundtouch::SAMPLETYPE[MAX_AUDIO_FRAME_SIZE];
 				f->len		= MAX_AUDIO_FRAME_SIZE;
 				AVPacket avpacket;
 				avpacket.data = buf;
@@ -350,7 +350,7 @@ MediumFrame* FFMpegHandler::encode(uint8_t* buf, int buf_len)
 	if (err < 0)
 		return NULL;
 
-	frame->samples = (int16_t*)encBuf;
+	frame->samples = (soundtouch::SAMPLETYPE*)encBuf;
 	return frame;
 }
 

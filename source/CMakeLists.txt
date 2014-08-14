@@ -21,8 +21,7 @@ option(VIDEO_BUILD	"Adds Video Player Module to Build Rules"	ON)
 option(DEBUG		"Sets Debug Mode"							OFF)
 option(LIBTAG		"Sets libtag only  mode"					OFF)
 option(MEDIA_TOOLS	"(use with LIBTAG=ON) Adds (audio) Media tools to build rules"	OFF)
-
-
+option(NATIVE_SOUNDTOUCH	"build with native soundtouch instead of packages 1.4"	OFF)
 
 # --- Debug Mode ---
 if (DEBUG)
@@ -35,8 +34,14 @@ if(LIBTAG)
 endif(LIBTAG)
 
 if(CMAKE_COMPILER_IS_GNUCC)
-  set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -ggdb3 -O0 -pedantic")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
+  set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -ggdb3 -Wall -O0 -pedantic")
+  set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -g -O2")
 endif()
+
+# --- Global variables ---
+set	(LIBS				${TranscriberAG_SOURCE_DIR}/../libs)
+set	(SRC				${TranscriberAG_SOURCE_DIR}/src)
 
 # --- Unix Settings ---
 if (UNIX)
@@ -58,20 +63,21 @@ if (UNIX)
 	set(CMAKE_INSTALL_PREFIX	/usr)
 endif (UNIX)
 
-# --- Global variables ---
-set	(LIBS				${TranscriberAG_SOURCE_DIR}/../libs)
-set	(SRC				${TranscriberAG_SOURCE_DIR}/src)
+if (NATIVE_SOUNDTOUCH)
+    pkg_check_modules		(SOUNDTOUCH	soundtouch)
+else (NATIVE_SOUNDTOUCH)
+    set  (SOUNDTOUCH_INCLUDE_DIRS ${LIBS}/soundtouch-1.4.0/include)
+    set  (SOUNDTOUCH_LIBRARY_DIRS ${LIBS}/soundtouch-1.4.0/source/SoundTouch)
+endif (NATIVE_SOUNDTOUCH)
 
 # --- Libraries ---
 set	(AGLIB				${LIBS}/aglib-2.0.1)
 #set	(GTKSPELL			${LIBS}/gtkspell-2.0.11-patch-BT)
 set	(LIVEMEDIA			${LIBS}/live555)
-set	(SOUNDTOUCH			${LIBS}/soundtouch-1.4.0)
 
 set (AGLIB_BUILD		${LIBS}/aglib-2.0.1)
 #set	(GTKSPELL_BUILD		${LIBS}/build/gtkspell-2.0.11-patch-BT)
 set	(LIVEMEDIA_BUILD	${LIBS}/live555)
-set	(SOUNDTOUCH_BUILD	${LIBS}/soundtouch-1.4.0)
 
 # --- Recent distributions need this ---
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D__STDC_CONSTANT_MACROS -DCMAKE_INSTALL_PREFIX='${CMAKE_INSTALL_PREFIX}' -fPIC")
@@ -84,6 +90,8 @@ include_directories("${PROJECT_BINARY_DIR}/include/")
 #
 # -- TODO here -> manage LIBTAG 
 if (WIN32)	
+    set	(SOUNDTOUCH			${LIBS}/soundtouch-1.4.0)
+    set	(SOUNDTOUCH_BUILD	${LIBS}/soundtouch-1.4.0)
 	set	(EXTLIBS	             C:/Dev)		
 	set	(WIN32_EXT_GTKMM	     ${EXTLIBS}/gtkmm)		
     set	(WIN32_EXT_LIBSNDFILE    ${EXTLIBS}/libsndfile)
