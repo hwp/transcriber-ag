@@ -13,6 +13,7 @@ Start version is 2.0.0 version plus Debian patches.
  * improving CMAKE general build system
  * adding Tibetan as possible input language
  * make compilation possible on modern systems:
+    * gtkmm 2 -> 3
     * xerces 2 -> 3
     * small fixes for recent versions of ffmpeg
     * small fixes for recent versions of gtkmm
@@ -24,7 +25,7 @@ Start version is 2.0.0 version plus Debian patches.
 You'll have to play a bit with apt/aptitude to get the right dependencies, but
 globally
 
-`aptitude install build-essential cmake gettext cdbs libxerces-c-dev libavcodec-dev libavformat-dev libswscale-dev libavdevice-dev libavfilter-dev libgtkmm-2.4-dev portaudio19-dev libsndfile1-dev xsltproc libxt-dev`
+`aptitude install build-essential cmake gettext cdbs libxerces-c-dev libavcodec-dev libavformat-dev libswscale-dev libavdevice-dev libavfilter-dev libgtkmm-3.0-dev portaudio19-dev libsndfile1-dev xsltproc libxt-dev`
 
 should do it. On some systems, you might have dependency conflicts; in this case install `libjack-jackd2-dev`. Then
 

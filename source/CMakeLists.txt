@@ -66,7 +66,7 @@ if (UNIX OR MINGW)
 	pkg_check_modules		(XERCES		xerces-c)
     if (NOT LIBTAG)
 #	    find_package			(ASPELL		REQUIRED)
-    	pkg_check_modules		(GTKMM		gtkmm-2.4)
+    	pkg_check_modules		(GTKMM		gtkmm-3.0)
     	pkg_check_modules		(SNDFILE	sndfile)
     	pkg_check_modules		(PORTAUDIO	portaudio-2.0)
     else (NOT LIBTAG)
@@ -116,10 +116,10 @@ if (WIN32 AND NOT MINGW)
     
 	include_directories(
 		# -- GTKmm --
-		${WIN32_EXT_GTKMM}/include/giomm-2.4
-		${WIN32_EXT_GTKMM}/include/gtkmm-2.4
-		${WIN32_EXT_GTKMM}/include/gdkmm-2.4
-		${WIN32_EXT_GTKMM}/include/glibmm-2.4
+		${WIN32_EXT_GTKMM}/include/giomm-3.0
+		${WIN32_EXT_GTKMM}/include/gtkmm-3.0
+		${WIN32_EXT_GTKMM}/include/gdkmm-3.0
+		${WIN32_EXT_GTKMM}/include/glibmm-3.0
 		${WIN32_EXT_GTKMM}/include/atkmm-1.6
 		${WIN32_EXT_GTKMM}/include/pangomm-1.4
 		${WIN32_EXT_GTKMM}/include/cairomm-1.0
@@ -132,9 +132,9 @@ if (WIN32 AND NOT MINGW)
 		${WIN32_EXT_GTKMM}/include/cairo
 		${WIN32_EXT_GTKMM}/include/
 	
-		${WIN32_EXT_GTKMM}/lib/gtkmm-2.4/include
-		${WIN32_EXT_GTKMM}/lib/gdkmm-2.4/include
-		${WIN32_EXT_GTKMM}/lib/glibmm-2.4/include
+		${WIN32_EXT_GTKMM}/lib/gtkmm-3.0/include
+		${WIN32_EXT_GTKMM}/lib/gdkmm-3.0/include
+		${WIN32_EXT_GTKMM}/lib/glibmm-3.0/include
 		${WIN32_EXT_GTKMM}/lib/atkmm-1.6/include
 		${WIN32_EXT_GTKMM}/lib/pangomm-1.4/include
 		${WIN32_EXT_GTKMM}/lib/cairomm-1.0/include
@@ -165,10 +165,10 @@ if (WIN32 AND NOT MINGW)
 
 	# -- Libraries --
 	set(GTKMM_LINK_LIBRARIES
-		giomm-2.4
-		glibmm-2.4
-		gtkmm-2.4
-		gdkmm-2.4
+		giomm-3.0
+		glibmm-3.0
+		gtkmm-3.0
+		gdkmm-3.0
 		atkmm-1.6
 		pangomm-1.4
 		cairomm-1.0
@@ -198,10 +198,10 @@ if (APPLE)
 		${BASE_DIR}/include
 		${BASE_DIR}/include/gtk-2.0
 		${BASE_DIR}/include/glib-2.0
-		${BASE_DIR}/include/gtkmm-2.4
-		${BASE_DIR}/include/glibmm-2.4
-		${BASE_DIR}/include/gdkmm-2.4
-		${BASE_DIR}/include/giomm-2.4
+		${BASE_DIR}/include/gtkmm-3.0
+		${BASE_DIR}/include/glibmm-3.0
+		${BASE_DIR}/include/gdkmm-3.0
+		${BASE_DIR}/include/giomm-3.0
 		${BASE_DIR}/include/cairomm-1.0
 		${BASE_DIR}/include/pangomm-1.4
 		${BASE_DIR}/include/atk-1.0
@@ -210,10 +210,10 @@ if (APPLE)
 		${BASE_DIR}/include/pango-1.0
 		${BASE_DIR}/include/sigc++-2.0
 
-		${BASE_DIR}/lib/gtkmm-2.4/include
-		${BASE_DIR}/lib/glibmm-2.4/include
-		${BASE_DIR}/lib/gdkmm-2.4/include
-		${BASE_DIR}/lib/giomm-2.4/include
+		${BASE_DIR}/lib/gtkmm-3.0/include
+		${BASE_DIR}/lib/glibmm-3.0/include
+		${BASE_DIR}/lib/gdkmm-3.0/include
+		${BASE_DIR}/lib/giomm-3.0/include
 		${BASE_DIR}/lib/gtk-2.0/include
 		${BASE_DIR}/lib/sigc++-2.0/include
 		${BASE_DIR}/lib/glib-2.0/include
@@ -229,10 +229,10 @@ if (APPLE)
 
 	# -- Libraries --
 	set(GTKMM_LINK_LIBRARIES
-		giomm-2.4
-		glibmm-2.4
-		gtkmm-2.4
-		gdkmm-2.4
+		giomm-3.0
+		glibmm-3.0
+		gtkmm-3.0
+		gdkmm-3.0
 		atkmm-1.6
 		pangomm-1.4
 		cairomm-1.0
