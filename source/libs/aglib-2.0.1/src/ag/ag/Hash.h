@@ -48,7 +48,7 @@ class hashString
  public:
   size_t operator()(string const &str) const
     {
-      hash<char const *> h;
+      std::hash<char const *> h;
       return (h(str.c_str()));
     }
 };
@@ -72,7 +72,7 @@ class hashStringPair
  public:
   size_t operator()(pair<string,string> const &sp) const
     {
-      hash<char const *> h;
+      std::hash<char const *> h;
       return (h((sp.first+sp.second).c_str()));
     }
 };
